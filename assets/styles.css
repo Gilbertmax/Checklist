@@ -1,17 +1,48 @@
+/* General body settings */
 body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+    margin: 0;
+    padding: 0;
     overflow-y: scroll;
 }
 
-.recharts-cartesian-grid-horizontal line {
-	stroke-dasharray: 0;
-	stroke-opacity: 0.6 !important;
-	stroke: var(--gray-7);
+/* Navbar */
+.navbar {
+    background-color: #4f46e5;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.recharts-cartesian-grid-vertical line {
-	stroke-opacity: 0 !important;
+/* Sidebar */
+.sidebar {
+    background-color: #1e293b;
+    color: white;
+    padding: 10px;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
 }
 
-.rt-BaseTabList {
-	box-shadow: none;
+/* Cards */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+/* Grid System for Cards */
+.grid {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin: 20px 0;
 }
