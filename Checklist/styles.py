@@ -98,3 +98,16 @@ base_stylesheets = [
 base_style = {
     "font_family": "Inter",
 }
+
+base_style = {
+    "border": "1px solid #ddd",
+    "border_radius": "5px",
+    "padding": "10px",
+    "background_color": "#f9f9f9",
+}
+
+table_style = base_style.copy()
+table_style.update({
+    "background_color": "#ffffff",  # Personaliza el fondo de la tabla
+    "box_shadow": "0 2px 5px rgba(0,0,0,0.1)",
+})

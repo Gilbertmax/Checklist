@@ -25,7 +25,7 @@ def _show_item(item: Item, index: int) -> rx.Component:
             rx.input(
                 type="file",
                 on_change=lambda e: TableState.upload_evidence(item.name, e),
-                size="sm",
+                size="2",  # Cambio 'sm' a un valor válido: '1', '2', o '3'
             ),
             justify="center",
         ),
@@ -68,7 +68,7 @@ def checklist_table() -> rx.Component:
                 placeholder="Search project...",
                 value=TableState.search_value,
                 on_change=TableState.set_search_value,
-                size="sm",
+                size="2",  # Cambio 'sm' a un valor válido
                 max_width="250px",
             ),
             rx.button(
@@ -78,7 +78,7 @@ def checklist_table() -> rx.Component:
                 background_color="green",
                 hover={"background_color": "darkgreen"},
             ),
-            justify="space-between",
+            justify="between",  # Cambio 'space-between' a 'between'
             wrap="wrap",
             width="100%",
         ),
