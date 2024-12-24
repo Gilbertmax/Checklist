@@ -1,11 +1,40 @@
-"""The checklist overview page of the app."""
-
 import reflex as rx
 from ..templates import template
 from .. import styles
-from reflex.components.table import Table
-from reflex.components.radix.forms import Select
-from .checklist_state import ChecklistState
+from ..views.checklist_state import ChecklistState
+
+
+def checklist_table(data: list) -> rx.Component:
+    """Generate a table for the checklist.
+
+    Args:
+        data (list): The list of checklist items.
+
+    Returns:
+        A Reflex table component.
+    """
+    return rx.table.root(
+        rx.table.header(
+            rx.table.row(
+                rx.table.column_header_cell("Name"),
+                rx.table.column_header_cell("Owner"),
+                rx.table.column_header_cell("Status"),
+                rx.table.column_header_cell("Progress"),
+            )
+        ),
+        rx.table.body(
+            rx.foreach(
+                data,
+                lambda item: rx.table.row(
+                    rx.table.cell(item["Name"]),
+                    rx.table.cell(item["Owner"]),
+                    rx.table.cell(item["Status"]),
+                    rx.table.cell(f"{item['Progress']}%"),
+                )
+            )
+        ),
+        style=styles.base_style,  # Usar base_style en lugar de table_style
+    )
 
 
 @template(route="/", title="Checklist Overview")
@@ -40,20 +69,13 @@ def index() -> rx.Component:
                 on_click=ChecklistState.go_to_create_page,
                 color="white",
                 background_color=styles.accent_color,
-                hover={
-                    "background_color": styles.accent_text_color,
-                },
+                hover={"background_color": styles.accent_text_color},
             ),
-            justify="space-between",
+            justify="between",  # Corregido
             align="center",
             width="100%",
         ),
-        Table(
-            columns=["Name", "Owner", "Status", "Progress"],
-            rows=ChecklistState.filtered_checklists,
-            width="100%",
-            style=styles.table_style,
-        ),
+        checklist_table(ChecklistState.filtered_checklists),  # Correcta llamada
         rx.button(
             "Download as Excel",
             on_click=ChecklistState.download_checklists,
